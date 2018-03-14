@@ -64,6 +64,9 @@ function createApplication(appName, foldername){
 
 		console.log(chalk.blue("Making folders and subfolders"))
 
+		exec(`cd ${destinationPath} && git init`, ()=>{
+		})
+
 		fs.mkdir(destinationPath + "/client", (err)=>{
 			copyFile("client/index.js", destinationPath + '/client/index.js')
 			copyFile("client/history.js", destinationPath + '/client/history.js')
