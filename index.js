@@ -103,7 +103,7 @@ function createApplication(appName, foldername){
 		write(destinationPath + '/package.json', getPackagejsoncontent(appName))
 		copyFile("config/.babelrc", destinationPath + '/.babelrc')
 		copyFile("config/.env", destinationPath + '/.env')
-		copyFile("config/.gitignore", destinationPath + '/.gitignore')
+		copyFile("config/.gitignore-template", destinationPath + '/.gitignore')
 		copyFile("template.html", destinationPath + '/template.html')
 
 		fs.mkdir(destinationPath + "/static", (err)=>{
