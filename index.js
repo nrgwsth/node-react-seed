@@ -4,6 +4,8 @@ const fs = require("fs")
 const chalk = require("chalk")
 const path = require("path")
 const readline = require("readline")
+const {exec} = require("child_process")
+const rimraf = require("rimraf")
 
 const cmdvar = process.argv.slice(2)
 
@@ -27,10 +29,11 @@ function main(){
 		  confirm('destination is not empty, continue? [y/N] ', function (ok) {
 		    if (ok) {
 		      process.stdin.destroy()
-		      fs.rmdir(foldername, (err)=>{
+		      rimraf(foldername, (err)=>{
 		      	if(err) throw err;
 		      	createApplication(appName, foldername)
 		      })
+		      
 		    } else {
 		      console.error('aborting')
 		      process.exit(1)
@@ -193,7 +196,7 @@ function write(filePath, content){
 function getPackagejsoncontent(appName){
 	return `
 	{
-		"name": ${appName},
+		"name": ${JSON.stringify(appName)},
 		"scripts": {
 			"precommit": "lint-staged",
 			"build": "babel-node tools/build",
