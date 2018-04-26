@@ -7,6 +7,7 @@ module.exports = {
 	devtool: 'cheap-module-source-map',
 	entry: {
 		bundle: [
+			'whatwg-fetch',
 			'babel-polyfill',
 			path.resolve(__dirname, './client/index.js')
 		]

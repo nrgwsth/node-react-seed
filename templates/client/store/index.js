@@ -1,20 +1,16 @@
-import { createStore, applyMiddleware } from 'redux'
-import reducer from './../reducers'
-import logger from 'redux-logger'
-import thunk from 'redux-thunk'
-import { routerMiddleware } from 'react-router-redux'
+import {createStore, applyMiddleware} from "redux"
+import logger from "redux-logger"
+import thunk from "redux-thunk"
 
-import history from './../history'
+import reducers from "./../reducers"
 
-const middlewares = [thunk]
-if (process.env.NODE_ENV === 'development') middlewares.push(logger)
+const NODE_ENV = process.env.NODE_ENV === 'production' ? 'production' : 'development'
+let middlewares = [thunk]
 
-const middleware = routerMiddleware(history)
+if(NODE_ENV){
+	middlewares.push(logger)
+}
 
-export default function configureStore() {
-  const store = createStore(
-    reducer,
-    applyMiddleware(...middlewares, middleware)
-  )
-  return store
+export default function configureStore(){
+	return createStore(reducers, applyMiddleware(...middlewares))
 }

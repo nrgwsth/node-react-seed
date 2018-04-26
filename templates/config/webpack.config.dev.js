@@ -5,6 +5,7 @@ module.exports = {
 	devtool: 'cheap-module-source-map',
 	entry: {
 		bundle: [
+			'whatwg-fetch',
 			'babel-polyfill',
 			'webpack-hot-middleware/client?reload=true',
 			path.resolve(__dirname, './client/index.js')

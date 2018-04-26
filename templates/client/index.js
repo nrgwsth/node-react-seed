@@ -1,24 +1,19 @@
-import React, { Component } from 'react'
-import { render } from 'react-dom'
-import { Router, Route, Switch, Link } from 'react-router-dom'
-import { ConnectedRouter } from 'react-router-redux'
-import { Provider } from 'react-redux'
+import React, {Component} from "react"
+import {render} from "react-dom"
+import {Provider} from "react-redux"
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import configureStore from './store'
+import App from "./containers/App"
 
-import history from './history'
-
-import App from './containers/App'
+import configureStore from "./store/"
 
 const store = configureStore()
 
 render(
-	<Provider store={store}>
-		<div>
-			<ConnectedRouter history={history}>
-				<App />
-			</ConnectedRouter>
-		</div>
-	</Provider>,
-	document.getElementById('app')
+  <MuiThemeProvider>
+    <Provider store = {store}>
+      <App />
+    </Provider>
+  </MuiThemeProvider>,
+	document.getElementById("app")
 )
